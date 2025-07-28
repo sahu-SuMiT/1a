@@ -58,9 +58,15 @@ def main() -> None:
     if sys.platform == 'darwin':  # macOS
         multiprocessing.set_start_method('spawn')
     
-    # Default directories - use local paths instead of Docker paths
-    input_dir = os.path.join(os.getcwd(), "input")
-    output_dir = os.path.join(os.getcwd(), "output")
+    # Check if we're running in Docker (check if /app directory exists)
+    if os.path.exists('/app'):
+        # Docker environment - use Docker paths
+        input_dir = "/app/input"
+        output_dir = "/app/output"
+    else:
+        # Local environment - use local paths
+        input_dir = os.path.join(os.getcwd(), "input")
+        output_dir = os.path.join(os.getcwd(), "output")
     
     # Allow overriding directories for testing
     if len(sys.argv) > 2:

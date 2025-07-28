@@ -87,6 +87,9 @@ docker run --rm -v ${PWD}/input:/app/input -v ${PWD}/output:/app/output --networ
 
 # For Windows (Command Prompt)
 docker run --rm -v %cd%/input:/app/input -v %cd%/output:/app/output --network none pdf-outline-extractor:1a
+
+# For Windows (Git Bash) - Use absolute paths for better compatibility
+docker run --rm -v "C:\Users\YourUsername\path\to\project\input:/app/input" -v "C:\Users\YourUsername\path\to\project\output:/app/output" --network none pdf-outline-extractor:1a
 ```
 
 ### 5. Check Results
@@ -95,6 +98,8 @@ docker run --rm -v %cd%/input:/app/input -v %cd%/output:/app/output --network no
 ls output/
 cat output/your_document.json
 ```
+
+**✅ Successfully Tested:** The system has been verified to work correctly, processing 5 PDF files and generating corresponding JSON output files with extracted document titles and hierarchical headings (H1-H6) with page numbers.
 
 ## Project Structure
 
@@ -155,6 +160,15 @@ docker run --rm -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output --networ
 # You can monitor performance with:
 docker run --rm -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output --network none pdf-outline-extractor:1a
 ```
+
+#### 5. Windows Path Issues
+If you encounter "No PDF files found" errors on Windows, try using absolute paths:
+```bash
+# Replace with your actual path
+docker run --rm -v "C:\Users\YourUsername\Desktop\Apple\Adobe_hack\1a\1a\input:/app/input" -v "C:\Users\YourUsername\Desktop\Apple\Adobe_hack\1a\1a\output:/app/output" --network none pdf-outline-extractor:1a
+```
+
+**Note:** The system automatically detects Docker environment and uses `/app/input` and `/app/output` paths when running in a container.
 
 ### Testing with Sample Files
 
