@@ -16,7 +16,7 @@ This solution extracts structured outlines from PDF documents, identifying the t
 - Contextual heading level validation and correction
 
 ## Input Format
-input/
+##### input/
 ├── apple.pdf     
 ├── banana.pdf  
 ├── cat.pdf     
